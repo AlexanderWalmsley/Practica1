@@ -1,0 +1,72 @@
+{
+"map_settings" : {
+    "projection": "Mercator",
+    "central latitude": 0,
+    "central longitude": 0,
+    "extent": [-60, -100, -50, -20],
+    "dpi": 100,
+    "coastline_color": "black",
+    "coastline_res": "10m"
+
+},
+
+"data" : [
+
+    {
+        "id": "cape",
+        "name": "MUCAPE",
+        "file": "ERA-5_MAY2019/cape_slp_twp_era5_may2019.nc",
+        "plot?": true,
+        "vars": ["cape"],
+        "type": "contour",
+        "level": null,
+        "levels": [0, 3000, 100],
+        "colors": "b"
+
+    },
+    
+    {
+        "id": "mslp",
+        "name": "Mean Sea Level Pressure",
+        "file": "ERA-5_MAY2019/mslp_era5_may2019.nc",
+        "plot?": true,
+        "vars": ["msl"],
+        "type": "contour",
+        "level": null,
+        "levels": [960, 1040, 4],
+        "conversions": [["divide", 100]],
+        "colors": "k"
+
+    },
+
+
+
+    {
+        "id": "wind",
+        "name": "Wind",
+        "file": "ERA-5_MAY2019/wind_era5_may2019 - Copy.nc",
+        "plot?": true,
+        "vars": ["ushear", "vshear"],
+        "type": "barbs",
+        "length": 7,
+        "level": null,
+        
+        "density": 8,
+        "colors": "k"
+
+    },
+
+    {
+        "id": "tmp",
+        "name": "Temperature [K]",
+        "file": "ERA-5_MAY2019/temp_era5_may2019.nc",
+        "plot?": true,
+        "vars": ["t"],
+        "type": "shading",
+        "level": 850,
+        "levels": [260, 300, 1],
+        "colors":"RdYlBu_r" 
+    }
+
+]
+}

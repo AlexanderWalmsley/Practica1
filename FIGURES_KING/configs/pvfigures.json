@@ -1,0 +1,45 @@
+{
+"map_settings" : {
+    "projection": "Orthographic",
+    "central latitude": 0,
+    "central longitude": -70,
+    "extent": [-30, -180, -70, -20],
+    "dpi": 100,
+    "coastline_color": "black",
+    "coastline_res": "10m"
+
+},
+
+"data" : [
+
+
+    {
+        "id": "wind",
+        "name": "Wind 330 K",
+        "file": "ERA-5_MAY2019/eraint_pv_330K.nc",
+        "plot?": true,
+        "vars": ["u", "v"],
+        "type": "vectors",
+        "level": null,
+        "levels": null,
+        "density": 6,
+        "colors": "k"
+
+    },
+
+
+
+    {
+        "id": "pv",
+        "name": "PV 330K",
+        "file": "ERA-5_MAY2019/eraint_pv_330K.nc",
+        "plot?": true,
+        "vars": ["pv"],
+        "type": "colors",
+        "level": null,
+        "levels": [-10e-6, -2e-6, 2e-7],
+        "colors":"RdYlBu_r" 
+    }
+
+]
+}
