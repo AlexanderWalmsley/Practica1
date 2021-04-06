@@ -1,6 +1,6 @@
 *.nc
 
 ERA-5_MAY2019/
-FIGURES_KING/*.png
-FIGURES_KING/*/*.png
+FIGURES/*.png
+FIGURES/*/*.png
 
