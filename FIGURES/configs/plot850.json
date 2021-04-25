@@ -5,6 +5,7 @@
     "central longitude": 0,
     "extent": [-60, -100, -50, -20],
     "dpi": 100,
+    "timeframe":[0,32,4],
     "coastline_color": "black",
     "coastline_res": "10m"
 
@@ -20,7 +21,7 @@
         "vars": ["cape"],
         "type": "contour",
         "level": null,
-        "levels": [0, 3000, 100],
+        "range": [0, 3000, 100],
         "colors": "b"
 
     },
@@ -33,7 +34,7 @@
         "vars": ["msl"],
         "type": "contour",
         "level": null,
-        "levels": [960, 1040, 4],
+        "range": [960, 1040, 4],
         "conversions": [["divide", 100]],
         "colors": "k"
 
@@ -64,7 +65,7 @@
         "vars": ["t"],
         "type": "shading",
         "level": 850,
-        "levels": [260, 300, 1],
+        "range": [260, 300, 1],
         "colors":"RdYlBu_r" 
     }
 

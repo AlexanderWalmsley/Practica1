@@ -5,6 +5,7 @@
     "central longitude": -70,
     "extent": [-30, -180, -70, -20],
     "dpi": 100,
+    "timeframe": [0,32,4],
     "coastline_color": "black",
     "coastline_res": "10m"
 
@@ -21,7 +22,7 @@
         "vars": ["u", "v"],
         "type": "vectors",
         "level": null,
-        "levels": null,
+        "range": null,
         "density": 6,
         "colors": "k"
 
@@ -36,9 +37,10 @@
         "plot?": true,
         "vars": ["pv"],
         "type": "colors",
+        "sigma": 1,
         "level": null,
-        "levels": [-10e-6, -2e-6, 2e-7],
-        "colors":"RdYlBu_r" 
+        "range": [-10e-6, -2e-6, 2e-7],
+        "colors":"cmo.thermal" 
     }
 
 ]

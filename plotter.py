@@ -1,4 +1,6 @@
 import cartopy
+import cmocean
+import cmocean as cmocean
 import xarray as xr
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
@@ -6,7 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import scipy.ndimage as ndimage
 import pathlib as pth
-# import cmocean
+import cmocean
 from numpy.core._multiarray_umath import ndarray
 from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
 from datetime import datetime
@@ -70,7 +72,7 @@ def plot_shading(ax, ds, dictionary, t):
         var = calculator.calculate()
 
     levels = np.arange(dictionary["range"][0], dictionary["range"][1], dictionary["range"][2])
-    smooth = ndimage.gaussian_filter(var, sigma=1, order=0) # add sigma to configs
+    smooth = ndimage.gaussian_filter(var, sigma=dictionary["sigma"], order=0)  # add sigma to configs
     contour = ax.contourf(lon, lat, smooth, levels=levels, cmap=dictionary["colors"], zorder=3,
                           transform=ccrs.PlateCarree())
 
@@ -97,7 +99,7 @@ def plot_contour(ax, ds, dictionary, t):
         var = calculator.calculate()
 
     levels = np.arange(dictionary["range"][0], dictionary["range"][1], dictionary["range"][2])
-    smooth = ndimage.gaussian_filter(var, sigma=1, order=0)
+    smooth = ndimage.gaussian_filter(var, sigma=dictionary["sigma"], order=0)
     contour = ax.contour(lon, lat, smooth, levels=levels, linewidths=1.5, colors=dictionary['colors'],
                          zorder=11, transform=ccrs.PlateCarree())
     plt.clabel(contour, inline=True, fmt='%2i', fontsize=14)
@@ -120,7 +122,7 @@ def plot_vectors(ax, ds, dictionary, t):
         var2 = calculator2.calculate()
     lon = ds['longitude']
     lat = ds['latitude']
-    nral = dictionary["density"] # lower is denser
+    nral = dictionary["density"]  # lower is denser
     ax.quiver(lon[::nral], lat[::nral], var1[::nral, ::nral], var2[::nral, ::nral],
               pivot='middle', zorder=12, transform=ccrs.PlateCarree())
 
@@ -203,7 +205,7 @@ for path in configs:
                                                       central_latitude=map_settings["central latitude"]),
                        PlateCarree=ccrs.PlateCarree())
     #
-    for k in range(0, len(ds2["time"])):
+    for k in range(map_settings["timeframe"][0], map_settings["timeframe"][1], map_settings["timeframe"][2]):
 
         tt = k
         title = ''
@@ -215,7 +217,7 @@ for path in configs:
         for i in range(len(data)):
 
             # plot data in appropriate style
-            if data["plot?"[i]] is True:
+            if data[i]["plot?"] is True:
 
                 dataset = xr.open_dataset(data[i]["file"])
 
@@ -245,8 +247,8 @@ for path in configs:
         vtime = datetime.strptime(str(ds2.time.data[tt].astype('datetime64[ms]')), '%Y-%m-%dT%H:%M:%S.%f')
         plt.title('{}'.format(vtime), loc='right')
         plt.title('{}'.format(title[:-2]), loc='left')
-        pth.Path('FIGURES/figures' + filename[:-1] + '/').mkdir(exist_ok=True)
-        plt.savefig('FIGURES/figures' + '{}'.format(filename[:-1]) + '/' + '{}'.format(k) + '.png',
+        pth.Path('FIGURES/figures/' + filename[:-1] + '/').mkdir(exist_ok=True)
+        plt.savefig('FIGURES/figures/' + '{}'.format(filename[:-1]) + '/' + '{}'.format(k) + '.png',
                     dpi=map_settings["dpi"])
         plt.close(fig)
         print("finished")

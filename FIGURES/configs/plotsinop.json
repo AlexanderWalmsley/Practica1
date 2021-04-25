@@ -5,6 +5,7 @@
         "central longitude": 0,
         "extent": [-60, -100, -50, -20],
         "dpi": 100,
+        "timeframe":[0,32,4],
         "coastline_color": "black",
         "coastline_res": "10m"
     
@@ -19,6 +20,7 @@
         "plot?": true,
         "vars": ["cape"],
         "type": "contour",
+        "sigma": 1,
         "level": null,
         "levels": [0, 3000, 100],
         "colors": "b"
@@ -31,6 +33,7 @@
         "plot?": true,
         "vars": ["msl"],
         "type": "contour",
+        "sigma": 1,
         "level": null,
         "levels": [960, 1040, 4],
         "conversions": [["divide", 100]],
@@ -45,6 +48,7 @@
         "plot?": false,
         "vars": ["thck"],
         "type": "contour",
+        "sigma": 1,
         "level": null,
         "levels": [2500, 3000, 20],
         "conversions": [["divide",9.8]],
