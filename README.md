@@ -25,7 +25,8 @@ A continuación se adjuntará un archivo de configuración y se comentará la ut
         //seccion del mapa que quiere graficarse, formato: [LatMax,LatMin,LonMax,LonMin]
         "extent": [-60, -100, -50, -20],  
          //Densidad de pixeles, mas alta generará un gráfico con mayor resolucián pero considerablemente mas pesado
-        "dpi": 100,                      
+        "dpi": 100,  
+        "timeframe": [0,32,4],     //período de tiempo a gráficar [start, stop, step]                    
         "coastline_color": "black",       //color para dibujar las lineas costales
         "coastline_res": "10m"            //resolucion en metros de las costas
 
@@ -51,7 +52,8 @@ A continuación se adjuntará un archivo de configuración y se comentará la ut
          //altura en la cual se seleccionara la variable, si el dataset no contiene alturas,  dejar como null                                                   
         "level": null,   ]
         //rango de selección de la variable formato [begin, end, step]
-        "range": [0, 3000, 100],  
+        "range": [0, 3000, 100],
+        "sigma": 1,              // nivel de suavización de la curva
         "colors": "b"             //color a utilizar para la variable
 
     },
@@ -72,16 +74,35 @@ A continuación se adjuntará un archivo de configuración y se comentará la ut
 
     {
         "id": "tmp",
-        "name": "Temperature [K]", 
+        "name": "Temperature [F]", 
         "file": "ERA-5_MAY2019/temp_era5_may2019.nc",
         "plot?": true,
         "vars": ["t"],
         "type": "shading",
         "level": 500,
-        "range": [235, 275, 1],
-        "colors":"RdYlBu_r"    //para el sombreado, se recomienda escoger un colormap en vez de un color simple
+        "range": [-36.67, 35.33, 1.8],
+        "conversions": [["subtract", 273.15], ["multiply", 1.8]["add", 32]]  // campo opcional que permita realizar operaciones matemáticas simples
+        "colors":"cmo.thermal"    //para utilizar colormaps del paquete cmocean, cmo.<colormap>
     }
 
 ]
 }
 ```
+El campo "conversions" que puede ser añadido a cualquiera de los diccionarios que definen una variable a graficar debe tener la siguiente firma: 
+```python
+array[array[str, float]]
+```
+Es decir un arreglo de largo indefinido, que contiene arreglos de largo 2 en cada índice. 
+Estos arreglos pequeños deben consistir cada uno de un par (operación, valor), de esta forma se aplicará cada operación con el valor que tiene asignado.
+Estas operaciones se realizarán secuencialmente, es decir NO respetan el orden algebraico automáticamente, si una suma se encuentra antes que una multipicacón, la suma se realizara primero!
+
+Solo pueden ser operados valores constantes, si es necesario operar entre variables de los datos, será necesario el uso del programa aparte para operar entre los datos.
+En el código de ejemplo se muestra una conversión de temperaturas desde Kelvin a Farenheit.
+
+
+### Operador de Datos (dataoperator.py)
+
+
+
+
+
