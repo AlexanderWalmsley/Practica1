@@ -15,7 +15,7 @@ from datetime import datetime
 import json
 
 plt.rcParams['figure.figsize'] = (12, 12)
-configs = pth.Path("FIGURES/configs").glob('*.json')
+configs = pth.Path("configs/figures").glob('*.json')
 contour_name_list = ["contour", "contours", "contorno", "contornos"]
 shading_name_list = ["shading", "sombreado", "colors", "colours", "coloring", "colouring"]
 quiver_name_list = ["quivers", "vectors", "arrows", "flechas", "vectores"]
@@ -247,8 +247,8 @@ for path in configs:
         vtime = datetime.strptime(str(ds2.time.data[tt].astype('datetime64[ms]')), '%Y-%m-%dT%H:%M:%S.%f')
         plt.title('{}'.format(vtime), loc='right')
         plt.title('{}'.format(title[:-2]), loc='left')
-        pth.Path('FIGURES/figures/' + filename[:-1] + '/').mkdir(exist_ok=True)
-        plt.savefig('FIGURES/figures/' + '{}'.format(filename[:-1]) + '/' + '{}'.format(k) + '.png',
+        pth.Path('FIGURES/' + filename[:-1] + '/').mkdir(exist_ok=True)
+        plt.savefig('FIGURES/' + '{}'.format(filename[:-1]) + '/' + '{}'.format(k) + '.png',
                     dpi=map_settings["dpi"])
         plt.close(fig)
         print("finished")

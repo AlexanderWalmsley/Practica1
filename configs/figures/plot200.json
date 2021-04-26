@@ -1,7 +1,6 @@
 {
 "map_settings" : {
     "projection": "Mercator",
-    "timeframe": [0,32,4],
     "central latitude": 0,
     "central longitude": 0,
     "extent": [-60, -100, -50, -20],
@@ -17,7 +16,7 @@
     {
         "id": "cape",
         "name": "MUCAPE",
-        "file": "ERA-5_MAY2019/cape_slp_twp_era5_may2019.nc",
+        "file": "datasets/cape_slp_twp_era5_may2019.nc",
         "plot?": true,
         "vars": ["cape"],
         "type": "contour",
@@ -31,7 +30,7 @@
     {
         "id": "hgt",
         "name": "Z hPa 500",
-        "file": "ERA-5_MAY2019/hgt_era5_may2019.nc",
+        "file": "datasets/hgt_era5_may2019.nc",
         "plot?": true,
         "vars": ["z"],
         "type": "contour",
@@ -46,10 +45,11 @@
     {
         "id": "wspeed",
         "name": "Wind Speed",
-        "file": "ERA-5_MAY2019/wind_era5_may2019 - Copy.nc",
+        "file": "datasets/wind_era5_may2019.nc",
         "plot?": true,
-        "vars": ["wspeed"],
+        "vars": ["WSpeed"],
         "type": "shading",
+        "sigma": 1,
         "level": null,
         "range": [30, 80, 2],
         "density": 5,

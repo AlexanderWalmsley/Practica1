@@ -18,50 +18,11 @@ from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
 from datetime import datetime
 import json
 
-windshear_settings = [{
-    "new_var_id": "ushear",
-    "new_var_name": "U Windshear",
-    "units": "m s**-1",
-    "file1": "ERA-5_MAY2019/wind_era5_may2019.nc",
-    "var1": 'u',
-    "file2": "ERA-5_MAY2019/swind_era5_may2019.nc",
-    "var2": 'u10',
-    "levels": [850, None],
-    "operation": "sub",
-    "output_file": "ERA-5_MAY2019/wind_era5_may2019.nc"
-},
-    {
-        "new_var_id": "vshear",
-        "new_var_name": "V Wind Shear",
-        "units": "m s**-1",
-        "file1": "ERA-5_MAY2019/wind_era5_may2019.nc",
-        "var1": 'v',
-        "file2": "ERA-5_MAY2019/swind_era5_may2019.nc",
-        "var2": 'v10',
-        "levels": [850, None],
-        "operation": "sub",
-        "output_file": "ERA-5_MAY2019/wind_era5_may2019.nc"
-
-    }]
-thck_settings = [{
-    "new_var_id": "thck",
-    "new_var_name": "THCK",
-    "units": "m s**-1",
-    "file1": "ERA-5_MAY2019/hgt2_era5_may2019.nc",
-    "var1": 'z',
-    "file2": "ERA-5_MAY2019/hgt2_era5_may2019.nc",
-    "var2": 'z',
-    "levels": [1000, 700],
-    "operation": "sub",
-    "output_file": "ERA-5_MAY2019/hgt2_era5_may2019.nc"
-}]
+configs = pth.Path("configs/data").glob('*.json')
 
 
-# operations = {
-#   "sub": subtract(vars_arr),
-#  "magnitude": magnitude(vars_arr),
-# "sum": sum(vars_arr)
-# }
+
+
 
 class Operator:
     def __init__(self, settings):
@@ -80,7 +41,7 @@ class Operator:
         else:
             self.var = self.file.createVariable(settings["new_var_id"], 'd', ('time', 'latitude', 'longitude'),
                                                 zlib=False)
-        self.ops = {"sub": self.subtract(),
+        self.ops = {"subtract": self.subtract(),
                     "add": self.add(),
                     "divide": self.divide(),
                     "multiply": self.multiply(),
@@ -161,7 +122,12 @@ class Operator:
         return
 
 
-for j in range(0, len(windshear_settings)):
-    op = Operator(windshear_settings[j])
-    op.ops[windshear_settings[j]["operation"]]
-    op.check()
+for path in configs:
+    config = open(path)
+    config = json.load(config)
+    operations = config["operations"]
+
+    for j in range(0, len(operations)):
+        op = Operator(operations[j])
+        op.ops[operations[j]["operation"]]
+        op.check()

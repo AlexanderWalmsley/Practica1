@@ -16,7 +16,7 @@
     {
         "id": "cape",
         "name": "MUCAPE",
-        "file": "ERA-5_MAY2019/cape_slp_twp_era5_may2019.nc",
+        "file": "datasets/cape_slp_twp_era5_may2019.nc",
         "plot?": true,
         "vars": ["cape"],
         "type": "contour",
@@ -29,7 +29,7 @@
     {
         "id": "mslp",
         "name": "Mean Sea Level Pressure",
-        "file": "ERA-5_MAY2019/mslp_era5_may2019.nc",
+        "file": "datasets/mslp_era5_may2019.nc",
         "plot?": true,
         "vars": ["msl"],
         "type": "contour",
@@ -44,7 +44,7 @@
     {
         "id": "thck",
         "name": "THCK",
-        "file": "ERA-5_MAY2019/hgt2_era5_may2019.nc",
+        "file": "datasets/hgt2_era5_may2019.nc",
         "plot?": false,
         "vars": ["thck"],
         "type": "contour",
@@ -59,7 +59,7 @@
     {
         "id": "wind",
         "name": "Wind",
-        "file": "ERA-5_MAY2019/wind_era5_may2019.nc",
+        "file": "datasets/wind_era5_may2019.nc",
         "plot?": true,
         "vars": ["u", "v"],
         "type": "barbs",
@@ -74,7 +74,7 @@
     {
         "id": "tmp",
         "name": "Temperature [K]",
-        "file": "ERA-5_MAY2019/temp_era5_may2019.nc",
+        "file": "datasets/temp_era5_may2019.nc",
         "plot?": true,
         "vars": ["t"],
         "type": "shading",

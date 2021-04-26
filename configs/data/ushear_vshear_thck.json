@@ -1,0 +1,39 @@
+{
+    "operations" : [{
+        "new_var_id": "ushear",
+        "new_var_name": "U Windshear",
+        "units": "m s**-1",
+        "file1": "datasets/wind_era5_may2019.nc",
+        "var1": "u",
+        "file2": "datasets/swind_era5_may2019.nc",
+        "var2": "u10",
+        "levels": [850, null],
+        "operation": "subtract",
+        "output_file": "datasets/wind_era5_may2019.nc"
+    },
+        {
+        "new_var_id": "vshear",
+        "new_var_name": "V Wind Shear",
+        "units": "m s**-1",
+        "file1": "datasets/wind_era5_may2019.nc",
+        "var1": "v",
+        "file2": "datasets/swind_era5_may2019.nc",
+        "var2": "v10",
+        "levels": [850, null],
+        "operation": "subtract",
+        "output_file": "datasets/wind_era5_may2019.nc"
+    
+        },
+    {
+        "new_var_id": "thck",
+        "new_var_name": "THCK",
+        "units": "m s**-1",
+        "file1": "datasets/hgt2_era5_may2019.nc",
+        "var1": "z",
+        "file2": "datasets/hgt2_era5_may2019.nc",
+        "var2": "z",
+        "levels": [1000, 700],
+        "operation": "subtract",
+        "output_file": "datasets/hgt2_era5_may2019.nc"
+    }]
+}

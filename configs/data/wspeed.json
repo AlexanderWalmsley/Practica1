@@ -1,0 +1,16 @@
+{
+        "operations" : [
+        {
+        "new_var_id": "WSpeed",
+        "new_var_name": "Wind Speed",
+        "units": "m s**-1",
+        "file1": "datasets/wind_era5_may2019.nc",
+        "var1": "u",
+        "file2": "datasets/wind_era5_may2019.nc",
+        "var2": "v",
+        "levels": [200, 200],
+        "operation": "magnitude",
+        "output_file": "datasets/wind_era5_may2019.nc"
+        }
+    ]
+}

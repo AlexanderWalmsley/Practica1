@@ -17,7 +17,7 @@
     {
         "id": "wind",
         "name": "Wind 330 K",
-        "file": "ERA-5_MAY2019/eraint_pv_330K.nc",
+        "file": "datasets/eraint_pv_330K.nc",
         "plot?": true,
         "vars": ["u", "v"],
         "type": "vectors",
@@ -33,7 +33,7 @@
     {
         "id": "pv",
         "name": "PV 330K",
-        "file": "ERA-5_MAY2019/eraint_pv_330K.nc",
+        "file": "datasets/eraint_pv_330K.nc",
         "plot?": true,
         "vars": ["pv"],
         "type": "colors",
