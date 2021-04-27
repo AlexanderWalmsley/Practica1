@@ -5,7 +5,7 @@ El funcionamiento de esta herramienta esta dividido en 2 funciones principales:
 - Un programa para realizar operaciones sobre los datos para modificar sus variables o añadir nuevas.
 
 La estructura de las carpetas es la siguiente en /mnt/fluctus/results/awalmsley
-    ``` 
+``` 
     project
     ├───configs
     │   │ data
@@ -20,8 +20,7 @@ La estructura de las carpetas es la siguiente en /mnt/fluctus/results/awalmsley
     ├───dataoperator.py  
     ├───plotter.py
     └───README.md
-
-    ```    
+```    
 
 ## Instrucciones de uso
 ### Graficador (plotter.py)
