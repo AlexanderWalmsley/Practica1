@@ -82,7 +82,9 @@ A continuación se adjuntará un archivo de configuración y se comentará la ut
         "level": 500,
         "range": [-36.67, 35.33, 1.8],  
         "sigma": 1,
-        "conversions": [["subtract", 273.15], ["multiply", 1.8]["add", 32]]  // campo opcional que permita realizar operaciones matemáticas simples
+
+       // campo opcional que permite realizar operaciones matemáticas simples
+        "conversions": [["subtract", 273.15], ["multiply", 1.8]["add", 32]]  
         "colors":"cmo.thermal"    //para utilizar colormaps del paquete cmocean, cmo.<colormap>
     }
 
@@ -142,7 +144,7 @@ El programa opera de manera similar a el graficador, recorriendo una carpeta de 
     
         }]
 } 
-\\este archivo generará las compenente u y v del sisalle, restando el viento superficial al viento en altura 850 hPa para cada componente
+\\este input resta el viento superficial al viento en altura 850 hPa para generar el sisalle
 ```
 
 
