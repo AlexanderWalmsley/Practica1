@@ -49,7 +49,7 @@ A continuación se adjuntará un archivo de configuración y se comentará la ut
         "vars": ["cape"],  
         //Formato al graficar, dividida en 5 tipos: contornos, sombreado, barbas, vectores, y estrellas.        
         "type": "contour",        
-         //altura en la cual se seleccionara la variable, si el dataset no contiene alturas,  dejar como null                                                   
+         //altura en la cual se seleccionara la variable, si el dataset no contiene alturas,  dejar como null
         "level": null,   ]
         //rango de selección de la variable formato [begin, end, step]
         "range": [0, 3000, 100],
@@ -87,7 +87,6 @@ A continuación se adjuntará un archivo de configuración y se comentará la ut
         "conversions": [["subtract", 273.15], ["multiply", 1.8]["add", 32]]  
         "colors":"cmo.thermal"    //para utilizar colormaps del paquete cmocean, cmo.<colormap>
     }
-
 ]
 }
 ```
