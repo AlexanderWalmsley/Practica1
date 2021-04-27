@@ -1,3 +1,4 @@
+
 # Herramienta para graficar datos meteorológicos
 El funcionamiento de esta herramienta esta dividido en 2 funciones principales:
 - Un programa para generar gráficos a partir de multiples datasets, configurable a través de un archivo .json que recibirá los parámetros.
@@ -114,20 +115,20 @@ Esto significa que el programa solo puede crear variables nuevas y rellenarlas c
 
 El programa opera de manera similar a el graficador, recorriendo una carpeta de archivos .json, los cuales pueden contener 1 o mas operaciones dentro de sí, a continuación se mostrará un archivo de ejemplo
 ```javascript
-{   \\es importante que la lista de operaciones se llame "operations", el programa accede a ella a partir de este nombre.
+{   //es importante que la lista de operaciones se llame "operations", el programa accede a ella a partir de este nombre.
     "operations" : [{
-        "new_var_id": "ushear",         \\id de la nueva variable
-        "new_var_name": "U Windshear",   \\nombre largo de la nueva variable
-        "units": "m s**-1",              \\unidades de la nueva variable                                   
-        "file1": "datasets/wind_era5_may2019.nc",   \\el primer archivo 
-        "var1": "u",                      \\variable a tomar del primer archivo para la operación
-        "file2": "datasets/swind_era5_may2019.nc", \\el segundo archivo (puede ser el mismo que el primero!)
-        "var2": "u10",                    \\variable a tomar del segundo archivo
+        "new_var_id": "ushear",         //id de la nueva variable
+        "new_var_name": "U Windshear",   //nombre largo de la nueva variable
+        "units": "m s**-1",              //unidades de la nueva variable                                   
+        "file1": "datasets/wind_era5_may2019.nc",   //el primer archivo 
+        "var1": "u",                      //variable a tomar del primer archivo para la operación
+        "file2": "datasets/swind_era5_may2019.nc", //el segundo archivo (puede ser el mismo que el primero!)
+        "var2": "u10",                    //variable a tomar del segundo archivo
 
-   \\altura a la cual tomar la variable en cada archivo, si alguno no posee el campo de altura, dejarlo como null es importante
+   //altura a la cual tomar la variable en cada archivo, si alguno no posee el campo de altura, dejarlo como null es importante
         "levels": [850, null],          
-        "operation": "subtract",    \\operación a realizar sobre las 2 variables definidas
-        "output_file": "datasets/wind_era5_may2019.nc" \\ archivo en el cual se almacenará la nueva variable
+        "operation": "subtract",    //operación a realizar sobre las 2 variables definidas
+        "output_file": "datasets/wind_era5_may2019.nc" // archivo en el cual se almacenará la nueva variable
     },
         {
         "new_var_id": "vshear",
@@ -143,7 +144,7 @@ El programa opera de manera similar a el graficador, recorriendo una carpeta de 
     
         }]
 } 
-\\este input resta el viento superficial al viento en altura 850 hPa para generar el sisalle
+//este input resta el viento superficial al viento en altura 850 hPa para generar el sisalle
 ```
 
 
@@ -170,10 +171,3 @@ Segundo, deberá definirse la operación, dado que aún no esta implementada la 
         return
 ```
 Donde sólo la ultima linea define la operación con la que se irá rellenando la nueva variable, el resto es la selección de las variables a tomar para la operación, puede ser copiado entre operaciones, e idealmente se implementará que nod eba ser escrita usando herencia.
-
-
-
-
-
-
-
