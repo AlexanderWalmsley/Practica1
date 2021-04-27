@@ -170,4 +170,4 @@ Segundo, deberá definirse la operación, dado que aún no esta implementada la 
 
         return
 ```
-Donde sólo la ultima linea define la operación con la que se irá rellenando la nueva variable, el resto es la selección de las variables a tomar para la operación, puede ser copiado entre operaciones, e idealmente se implementará que nod eba ser escrita usando herencia.
+Donde sólo la ultima linea define la operación con la que se irá rellenando la nueva variable, el resto es la selección de las variables a tomar para la operación, puede ser copiado entre operaciones, e idealmente se implementará que no deba ser reescrita usando herencia.
