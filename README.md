@@ -80,7 +80,8 @@ A continuación se adjuntará un archivo de configuración y se comentará la ut
         "vars": ["t"],
         "type": "shading",
         "level": 500,
-        "range": [-36.67, 35.33, 1.8],
+        "range": [-36.67, 35.33, 1.8],  
+        "sigma": 1,
         "conversions": [["subtract", 273.15], ["multiply", 1.8]["add", 32]]  // campo opcional que permita realizar operaciones matemáticas simples
         "colors":"cmo.thermal"    //para utilizar colormaps del paquete cmocean, cmo.<colormap>
     }
@@ -101,6 +102,74 @@ En el código de ejemplo se muestra una conversión de temperaturas desde Kelvin
 
 
 ### Operador de Datos (dataoperator.py)
+
+El operador de datos es un programa aparte para realizar operaciones de mayor complejidad, ya sea entre variables de un mismo dataset, o de 2 datasets distintos.
+
+Debido a las limitaciones de los archivos NetCDF y por seguridad esto tiene una restricciones importantes:
+
+- El programa NO modificará variables existentes, ni tampoco puede eliminarlas. Si la variable existe AUNQUE ESTE VACÍA, el programa se saltará la asignación de valores a esa variable, esto es importante porque en caso de algun error en las declaraciones creadas en el archivo .json, se debe empezar con un dataset fresco, o cambiar el nombre de la varible, dado que no encontrará el error hasta después de creada esta variable.
+
+Esto significa que el programa solo puede crear variables nuevas y rellenarlas con el resultado de la operación entre ambos valores.
+
+El programa opera de manera similar a el graficador, recorriendo una carpeta de archivos .json, los cuales pueden contener 1 o mas operaciones dentro de sí, a continuación se mostrará un archivo de ejemplo
+```javascript
+{   \\es importante que la lista de operaciones se llame "operations", el programa accede a ella a partir de este nombre.
+    "operations" : [{
+        "new_var_id": "ushear",         \\id de la nueva variable
+        "new_var_name": "U Windshear",   \\nombre largo de la nueva variable
+        "units": "m s**-1",              \\unidades de la nueva variable                                   
+        "file1": "datasets/wind_era5_may2019.nc",   \\el primer archivo 
+        "var1": "u",                      \\variable a tomar del primer archivo para la operación
+        "file2": "datasets/swind_era5_may2019.nc", \\el segundo archivo (puede ser el mismo que el primero!)
+        "var2": "u10",                    \\variable a tomar del segundo archivo
+
+   \\altura a la cual tomar la variable en cada archivo, si alguno no posee el campo de altura, dejarlo como null es importante
+        "levels": [850, null],          
+        "operation": "subtract",    \\operación a realizar sobre las 2 variables definidas
+        "output_file": "datasets/wind_era5_may2019.nc" \\ archivo en el cual se almacenará la nueva variable
+    },
+        {
+        "new_var_id": "vshear",
+        "new_var_name": "V Wind Shear",
+        "units": "m s**-1",
+        "file1": "datasets/wind_era5_may2019.nc",
+        "var1": "v",
+        "file2": "datasets/swind_era5_may2019.nc",
+        "var2": "v10",
+        "levels": [850, null],
+        "operation": "subtract",
+        "output_file": "datasets/wind_era5_may2019.nc"
+    
+        }]
+} \\este archivo generará las compenente u y v del sisalle, restando el viento superficial a el viento en la altura 850 hPa para cada componente
+```
+
+
+Para añadir una nueva operación al programa es necesario modificar 2 de sus partes:
+
+Primero, en el contstructor de Operator, agregar al diccionario self.ops un par "llave": operación(), 
+con el nombre que se usará para invocarla operación desde el archivo .json en la llave.
+
+Segundo, deberá definirse la operación, dado que aún no esta implementada la herencia para la selección de variables, debe verse de esta forma:
+
+```python
+    def add(self):
+        for i in range(0, len(self.dataset1["time"])):
+            if self.settings["levels"][0] is not None:
+                var0 = self.dataset1[self.settings["var1"]].sel(level=self.settings["levels"][0]).isel(time=i).values
+            else:
+                var0 = self.dataset1[self.settings["var1"]].isel(time=i).values
+            if self.settings["levels"][1] is not None:
+                var1 = self.dataset2[self.settings["var2"]].sel(level=self.settings["levels"][1]).isel(time=i).values
+            else:
+                var1 = self.dataset2[self.settings["var2"]].isel(time=i).values
+            self.var[i, :, :] = (var0 + var1)
+
+        return
+```
+Donde sólo la ultima linea define la operación con la que se irá rellenando la nueva variable, el resto es la selección de las variables a tomar para la operación, puede ser copiado entre operaciones, e idealmente se implementará que nod eba ser escrita usando herencia.
+
+
 
 
 
