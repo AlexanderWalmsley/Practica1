@@ -4,6 +4,24 @@ El funcionamiento de esta herramienta esta dividido en 2 funciones principales:
 - Un programa para generar gráficos a partir de multiples datasets, configurable a través de un archivo .json que recibirá los parámetros.
 - Un programa para realizar operaciones sobre los datos para modificar sus variables o añadir nuevas.
 
+La estructura de las carpetas es la siguiente en /mnt/fluctus/results/awalmsley
+    ``` 
+    project
+    ├───configs
+    │   │ data
+    │   │   | archivos de configuracion .json
+    │   │ figures
+    │   │   | archivos de configuracion .json
+    ├───datasets
+    │   │ archivos de datos .nc 
+    ├───FIGURES
+    │   │ carpetas que genere el programa plotter.py
+    │   │   | graficos generados por el programa
+    ├───dataoperator.py  
+    ├───plotter.py
+    └───README.md
+
+    ```    
 
 ## Instrucciones de uso
 ### Graficador (plotter.py)
@@ -42,7 +60,7 @@ A continuación se adjuntará un archivo de configuración y se comentará la ut
          //Nombre de la variablew que aparecerá como leyenda en el gráfico                                  
         "name": "MUCAPE",
         //Dataset del cual se tomara la variable a gráficar  
-        "file": "ERA-5_MAY2019/cape_slp_twp_era5_may2019.nc",  
+        "file": "datasets/cape_slp_twp_era5_may2019.nc",  
          //si este campo es true la variable será graficada, de lo contrario no lo será, 
          //esto existe para poder activar y desactivar variables rapidamente
         "plot?": true,            
@@ -62,7 +80,7 @@ A continuación se adjuntará un archivo de configuración y se comentará la ut
     {   //la definicion de barbas y vectores es sumamente similar, reciben parámetros idénticos, a excepcion de "type".
         "id": "wind",
         "name": "Wind",
-        "file": "ERA-5_MAY2019/wind_era5_may2019.nc",
+        "file": "datasets/wind_era5_may2019.nc",
         "plot?": true,
         "vars": ["u", "v"],        //solo para graficar barbas y vectores, deben definirse 2 variables en este campo
         "type": "barbs",         //el tipo puede ser referenciado por su nombre en ingles o español
@@ -76,7 +94,7 @@ A continuación se adjuntará un archivo de configuración y se comentará la ut
     {
         "id": "tmp",
         "name": "Temperature [F]", 
-        "file": "ERA-5_MAY2019/temp_era5_may2019.nc",
+        "file": "datasets/temp_era5_may2019.nc",
         "plot?": true,
         "vars": ["t"],
         "type": "shading",
