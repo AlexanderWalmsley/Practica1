@@ -141,7 +141,8 @@ El programa opera de manera similar a el graficador, recorriendo una carpeta de 
         "output_file": "datasets/wind_era5_may2019.nc"
     
         }]
-} \\este archivo generará las compenente u y v del sisalle, restando el viento superficial a el viento en la altura 850 hPa para cada componente
+} 
+\\este archivo generará las compenente u y v del sisalle, restando el viento superficial al viento en altura 850 hPa para cada componente
 ```
 
 
