@@ -24,8 +24,10 @@ La estructura de las carpetas es la siguiente en /mnt/fluctus/results/awalmsley
 
 ## Instrucciones de uso
 ### Graficador (plotter.py)
-Este programa esta configurado para recorrer una carpeta que contenga configuracionnes en archivos .json y generar a partir de estos varios graficos segun el rango de tiempo definido
-las configuraciones de ejemplo se encuentran en Practica1/FIGURES/configs
+Este programa esta configurado para recorrer una carpeta que contenga configuracionnes en archivos .json y generar a partir de estos varios graficos 
+segun el rango de tiempo definido
+
+las configuraciones de ejemplo se encuentran en Practica1/configs/figures
 
 Es necesario activar un ambiente con todas sus dependencias. }
 
@@ -188,3 +190,5 @@ Segundo, deberá definirse la operación, dado que aún no esta implementada la 
         return
 ```
 Donde sólo la ultima linea define la operación con la que se irá rellenando la nueva variable, el resto es la selección de las variables a tomar para la operación, puede ser copiado entre operaciones, e idealmente se implementará que no deba ser reescrita usando herencia.
+
+Las configuraciones de ejemplo para el operador se encuentran en /configs/data
